@@ -1,0 +1,35 @@
+{
+  "name": "rename-cli",
+  "version": "0.1.0",
+  "description": "Rename files",
+  "type": "module",
+  "bin": {
+    "rename": "cli.js"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbili/rename-cli.git"
+  },
+  "keywords": [
+    "cli-app",
+    "cli",
+    "files",
+    "rename",
+    "rename-cli"
+  ],
+  "author": "nbili",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nbili/rename-cli/issues"
+  },
+  "homepage": "https://github.com/nbili/rename-cli#readme",
+  "engines": {
+    "node": ">=12.20"
+  }
+}
