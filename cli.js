@@ -12,10 +12,13 @@ const cli = meow(
 	Options
 	  --no-directory,--no-d   Ignore rename directory
     --filters=<filters>    Filter source string
+    --remove               remove source string
 
 	Examples
     Rename current files and directory name 'foo' to 'bar'
 	   $ rename 'foo' 'bar'
+    Rename current files and directory name 'foo' to ''
+	   $ rename 'foo' --remove
 `,
   {
     importMeta: import.meta,
@@ -28,6 +31,10 @@ const cli = meow(
       filters: {
         type: "string",
         default: "",
+      },
+      remove: {
+        type: "boolean",
+        default: false,
       },
     },
   }
@@ -50,10 +57,15 @@ async function* getTargets(dir, filters) {
 
 void (async () => {
   const source = cli.input[0];
-  const destination = cli.input[1];
+  let destination = cli.input[1];
   const filters = cli.flags.filters;
+  const remove = cli.flags.remove;
 
-  if (!source || !destination) return process.exit(1);
+  if (remove && !source) return process.exit(1);
+
+  if (!remove && (!source || !destination)) return process.exit(1);
+
+  if (remove) destination = "";
 
   for await (const file of getTargets(".", filters)) {
     const { dir, base } = parse(file);
