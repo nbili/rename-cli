@@ -68,7 +68,7 @@ void (async () => {
       const ret = await stat(oldPath);
 
       if (ret.isDirectory()) {
-        break;
+        continue;
       }
     }
 
